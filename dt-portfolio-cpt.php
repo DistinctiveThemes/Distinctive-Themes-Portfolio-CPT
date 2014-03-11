@@ -14,7 +14,7 @@ add_action( 'init', 'register_cpt_dt_portfolio_cpt' );
 function register_cpt_dt_portfolio_cpt() {
 
     $labels = array( 
-        'name' => _x( 'Portfolio', 'dt_portfolio_cpt' ),
+        'name' => _x( 'Portfolio Projects', 'dt_portfolio_cpt' ),
         'singular_name' => _x( 'Project', 'dt_portfolio_cpt' ),
         'add_new' => _x( 'Add New', 'dt_portfolio_cpt' ),
         'add_new_item' => _x( 'Add New Project', 'dt_portfolio_cpt' ),
@@ -25,7 +25,7 @@ function register_cpt_dt_portfolio_cpt() {
         'not_found' => _x( 'No portfolio projects found', 'dt_portfolio_cpt' ),
         'not_found_in_trash' => _x( 'No portfolio projects found in Trash', 'dt_portfolio_cpt' ),
         'parent_item_colon' => _x( 'Parent Project:', 'dt_portfolio_cpt' ),
-        'menu_name' => _x( 'Portfolio Projects', 'dt_portfolio_cpt' ),
+        'menu_name' => _x( 'Portfolio', 'dt_portfolio_cpt' ),
     );
 
     $args = array( 
