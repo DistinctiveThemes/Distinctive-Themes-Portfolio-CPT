@@ -14,7 +14,7 @@ add_action( 'init', 'register_cpt_dt_portfolio_cpt' );
 function register_cpt_dt_portfolio_cpt() {
 
     $labels = array( 
-        'name' => _x( 'Portfolio Projects', 'dt_portfolio_cpt' ),
+        'name' => _x( 'Portfolio', 'dt_portfolio_cpt' ),
         'singular_name' => _x( 'Project', 'dt_portfolio_cpt' ),
         'add_new' => _x( 'Add New', 'dt_portfolio_cpt' ),
         'add_new_item' => _x( 'Add New Project', 'dt_portfolio_cpt' ),
