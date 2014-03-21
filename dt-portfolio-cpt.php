@@ -28,10 +28,10 @@ function register_cpt_dt_portfolio_cpt() {
         'menu_name' => _x( 'Portfolio', 'dt_portfolio_cpt' ),
     );
 
+    $slug = get_option('dt_portfolio_slug');
     $args = array( 
         'labels' => $labels,
-        'hierarchical' => true,
-        
+        'hierarchical' => true,        
         'supports' => array( 'title', 'editor', 'thumbnail' ),
         'taxonomies' => array( 'Filters' ),
         'public' => true,
@@ -44,8 +44,8 @@ function register_cpt_dt_portfolio_cpt() {
         'exclude_from_search' => false,
         'has_archive' => true,
         'query_var' => true,
-        'can_export' => true,
-        'rewrite' => true,
+        'can_export' => true,        
+        'rewrite' =>  array( 'slug' => $slug ),
         'capability_type' => 'post'
     );
 
@@ -72,7 +72,7 @@ function register_taxonomy_dt_portfolio_cpt_categories() {
         'add_or_remove_items' => _x( 'Add or remove project categories', 'distinctpress' ),
         'choose_from_most_used' => _x( 'Choose from the most used project categories', 'distinctpress' ),
         'menu_name' => _x( 'Project Categories', 'distinctpress' ),
-    );
+    );   
 
     $args = array( 
         'labels' => $labels,
@@ -82,12 +82,39 @@ function register_taxonomy_dt_portfolio_cpt_categories() {
         'show_tagcloud' => false,
         'show_admin_column' => true,
         'hierarchical' => true,
-
-        'rewrite' => true,
         'query_var' => true
     );
 
     register_taxonomy( 'dt_portfolio_cpt_categories', array('dt_portfolio_cpt'), $args );
+}
+
+/* Admin */
+add_action('admin_menu', 'dt_portfolio_plugin_settings');
+
+function dt_portfolio_plugin_settings() {
+    add_submenu_page('edit.php?post_type=dt_portfolio_cpt', 'settings', 'Settings', 'manage_options', 'portfolio_settings', 'dt_portfolio_display_settings' );
+}
+
+function dt_portfolio_display_settings() {
+    $interval = (get_option('dt_portfolio_slug') != '') ? get_option('dt_portfolio_slug') : 'portfolio';
+
+    $html = '</pre>
+                <div class="wrap"><form action="options.php" method="post" name="options">
+                    <h2>Select Your Settings</h2>
+                    ' . wp_nonce_field('update-options') . '
+                    <table class="form-table" width="100%" cellpadding="10">
+                        <tbody>
+                            <tr>
+                                <td scope="row" align="left">
+                                <label>Transition Interval</label><input type="text" name="dt_portfolio_slug" value="' . $interval . '" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <input type="hidden" name="action" value="update" />
+                    <input type="hidden" name="page_options" value="dt_portfolio_slug" />
+                    <input type="submit" name="Submit" value="Update" /></form></div>
+                    <pre>';
+    echo $html;
 }
 
 ?>
