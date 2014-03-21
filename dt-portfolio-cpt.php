@@ -99,21 +99,34 @@ function dt_portfolio_display_settings() {
     $interval = (get_option('dt_portfolio_slug') != '') ? get_option('dt_portfolio_slug') : 'portfolio';
 
     $html = '</pre>
-                <div class="wrap"><form action="options.php" method="post" name="options">
-                    <h2>Select Your Settings</h2>
-                    ' . wp_nonce_field('update-options') . '
-                    <table class="form-table" width="100%" cellpadding="10">
-                        <tbody>
-                            <tr>
-                                <td scope="row" align="left">
-                                <label>Transition Interval</label><input type="text" name="dt_portfolio_slug" value="' . $interval . '" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <input type="hidden" name="action" value="update" />
-                    <input type="hidden" name="page_options" value="dt_portfolio_slug" />
-                    <input type="submit" name="Submit" value="Update" /></form></div>
-                    <pre>';
+                <div class="wrap">
+                    <form action="options.php" method="post" name="options">
+                        <h2>Portfolio Settings</h2>
+                        ' . wp_nonce_field('update-options') . '
+                        <p class="intro">When you make any changes in this plugin, be sure to visit Your Permalink Settings & click the SAVE CHANGES button to refresh & re-write your permalinks, otherwise your changes will not take effect properly.
+                        </p>
+                        <p class="intro"><strong>Enter the URL slug you want to use for this post type. DO-NOT: use numbers, spaces, capital letters or special characters.</strong></p>
+                        <table class="form-table" width="100%" cellpadding="10">
+                            <tbody>
+                                <tr>
+                                    <td scope="row" align="left">
+                                    <label class="inline-me"><strong>Portfolio Slug</strong></label>
+                                    <input class="inline-me" type="text" name="dt_portfolio_slug" value="' . $interval . '" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="action" value="update" />
+                        <input type="hidden" name="page_options" value="dt_portfolio_slug" />
+                        <input type="submit" name="Submit" value="Update" />
+                    </form>
+                </div>
+            <pre>
+            <style type="text/css">
+            .wrap { max-width: 800px; }
+            .form-table td { padding: 10px 0; }
+            .inline-me { display: inline-block; }
+            </style>';
     echo $html;
 }
 
