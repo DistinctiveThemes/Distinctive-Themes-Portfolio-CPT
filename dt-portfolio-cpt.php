@@ -32,7 +32,7 @@ function register_cpt_dt_portfolio_cpt() {
     $args = array( 
         'labels' => $labels,
         'hierarchical' => true,        
-        'supports' => array( 'title', 'editor', 'thumbnail' ),
+        'supports' => array( 'title', 'editor', 'thumbnail', 'post-formats' ),
         'taxonomies' => array( 'Filters' ),
         'public' => true,
         'show_ui' => true,
